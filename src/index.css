@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #3b82f6;
+  --color-brand-purple: #8b5cf6;
+  --color-brand-pink: #ec4899;
+  
+  --font-sans: 'Inter', sans-serif;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-glow-slow: glow 8s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes glow {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply transition-colors duration-300 bg-slate-50 text-slate-800 dark:bg-[#030712] dark:text-slate-200 overflow-x-hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+@utility glassmorphism {
+  @apply bg-white/70 dark:bg-[#0f172a]/70 backdrop-blur-md border border-slate-200/50 dark:border-slate-800/50 shadow-lg shadow-slate-100/50 dark:shadow-none;
+}
+
+@utility glassmorphism-card {
+  @apply bg-white/60 dark:bg-[#0f172a]/60 backdrop-blur-md border border-slate-200/40 dark:border-slate-800/40 hover:border-brand-blue/50 dark:hover:border-brand-purple/50 transition-all duration-300 shadow-md hover:shadow-xl dark:shadow-none;
+}
+
+@utility text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-blue via-brand-purple to-brand-pink;
+}
+
+@utility text-glow {
+  text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+@utility text-glow-purple {
+  text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+@utility glow-bg {
+  @apply absolute blur-3xl opacity-20 dark:opacity-30 rounded-full pointer-events-none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100 dark:bg-slate-950;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-800 rounded-full border-2 border-slate-100 dark:border-slate-950 hover:bg-slate-400 dark:hover:bg-slate-700 transition-all;
+}
+
+/* Typing Caret Animation */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typing-caret::after {
+  content: '|';
+  @apply ml-1 font-normal text-brand-blue dark:text-brand-purple;
+  animation: blink 1s step-end infinite;
+}
+
+/* Certifications Hover Overlay */
+.cert-card:hover .cert-overlay {
+  opacity: 1;
+}
+
+/* Gradient borders */
+.gradient-border {
+  position: relative;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
+  padding: 1px;
+}
+.gradient-border-content {
+  @apply bg-white dark:bg-[#0f172a] rounded-[15px] h-full w-full;
+}
+
+/* Custom visual layout tweaks */
+section {
+  position: relative;
+  z-index: 10;
+}
